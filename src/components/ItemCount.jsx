@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import BuyButton from './BuyButton';
 
 import './styles/ItemCount.css';
+
 
 const ItemCount = ({ onAdd }) => {
   const initial = 0;
@@ -29,18 +30,18 @@ const ItemCount = ({ onAdd }) => {
           +
         </button>
       </div>
+      
+      <BuyButton onClick={onAdd} />
 
-      <button
-        className="button-primary"
-        onClick={() => onAdd(qty)}
-      >
-        Añadir
-      </button>
-      <Link to='/cart'>
-      <button className="button-primary"> Terminar compra </button>
-      </Link>
     </div>
   );
 };
 
 export default ItemCount;
+
+/*<button
+        className="button-primary"
+        onClick={() => onAdd(qty)}
+      >
+        Añadir
+      </button>*/
