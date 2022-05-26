@@ -1,13 +1,13 @@
-import { useParams } from 'react-router-dom';
-import ItemDetailContainer from '../components/ItemDetailContainer.jsx';
+import ItemList from '../ItemList';
+
+import './styles/Products.css';
 
 const Products = () => {
-  let { id } = useParams();
-  return (
-    <main>
-      <ItemDetailContainer id={id} />
-    </main>
-  );
-};
+    return (
+        <main className="products-page-container">
+            <ItemList />
+        </main>
+    )
+}
 
-export default Products;
+export default Products

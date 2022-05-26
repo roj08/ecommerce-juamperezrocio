@@ -1,13 +1,11 @@
-import Hero from '../components/Hero';
-import ItemListContainer from '../components/ItemListContainer';
+import ItemListContainer from '../ItemListContainer'
 
 const Home = () => {
-  return (
-    <main>
-      <Hero title="Cositas Bonitas" />
-      <ItemListContainer />
-    </main>
-  );
-};
+    return (
+        <main>
+            <ItemListContainer />  
+        </main>
+    )
+}
 
-export default Home;
+export default Home

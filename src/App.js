@@ -5,10 +5,12 @@ import ItemListContainer from './components/ItemListContainer.jsx';
 import ItemDetailContainer from './components/ItemDetailContainer.jsx';
 import Cart from './components/Cart';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import CartProvider from './context/CartContext';
 
 export default function App() {
 
   return (
+    <CartProvider>
     <BrowserRouter>
       <div>
         <NavBar />
@@ -24,5 +26,6 @@ export default function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    </CartProvider>
   );
 }
