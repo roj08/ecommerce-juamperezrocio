@@ -1,4 +1,5 @@
 import {createContext, useContext, useState} from 'react';
+import swal from 'sweetalert';
 
 const CartContext = createContext([])
 
@@ -13,13 +14,13 @@ const CartContextProvider = ({children}) => {
     }
     function addToCart(item) {
         if (isInCart(item.id)) {
-            alert("Este producto ya fue agregado")
+            alert("El producto fue agregado")
             let i = cartList.findIndex(el => el.id === item.id);
             const newCartList = cartList;
             newCartList[i].quantity += item.quantity;
             setCartList(newCartList);
         } else {
-            alert("Este producto ya fue agregado")
+            alert("El producto fue agregado")
 
             setCartList([
                 ...cartList,
