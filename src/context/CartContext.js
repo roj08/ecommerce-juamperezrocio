@@ -1,54 +1,54 @@
-import React, { createContext, useState } from 'react';
+import {createContext, useContext, useState} from 'react';
 
-export const CartContext = createContext(null);
+const CartContext = createContext([])
 
-const CartProvider = (props) => {
-  const [cart, setCart] = useState([]);
-  const [total, setTotal] = useState(0);
+export const useCartContext = () => useContext(CartContext)
 
-  const addToCart = (item, qty) => {
-    if (cart.some((el) => el.id === item.id)) {
-      const newCart = [...cart];
-      newCart.forEach((el) => {
-        if (el.id === item.id) {
-          el.qty = el.qty + qty;
-        }
-      });
-      console.log(newCart);
+const CartContextProvider = ({children}) => {
 
-      setCart([...newCart]);
-    } else {
-      let product = { ...item, qty };
-      setCart([...cart, product]);
+    const [cartList, setCartList] = useState([])
+
+    function isInCart(id) {
+        return cartList.some(el => el.id === id);
     }
-  };
+    function addToCart(item) {
+        if (isInCart(item.id)) {
+            alert("Este producto ya fue agregado")
+            let i = cartList.findIndex(el => el.id === item.id);
+            const newCartList = cartList;
+            newCartList[i].quantity += item.quantity;
+            setCartList(newCartList);
+        } else {
+            alert("Este producto ya fue agregado")
 
-  const deleteCartById = (id) => {
-    const newCart = [...cart];
-    let index = newCart.findIndex((el) => el.id === id);
+            setCartList([
+                ...cartList,
+                item]);
+        }
+    }
 
-    newCart.splice(index, 1);
+    const deleteItem = (id) => {
+        const newCart = [...cartList];
+        let index = newCart.findIndex((product) => product.id ===id);
+        newCart.splice(index,1);
 
-    setCart([...newCart]);
-  };
+        setCartList([...newCart])
+    }
 
-  const deleteCart = () => {
-    setCart([]);
-  };
+    const deleteCart = () => {
+        setCartList([])
+    }
 
-  return (
-    <CartContext.Provider
-      value={{
-        cart,
-        setCart,
-        addToCart,
-        deleteCartById,
-        deleteCart,
-      }}
-    >
-      {props.children}
-    </CartContext.Provider>
-  );
-};
+    return (
+        <CartContext.Provider value = { {
+            cartList,
+            addToCart,
+            deleteItem,
+            deleteCart
+        } }>
+            {children}
+        </CartContext.Provider>
+    )
+}
 
-export default CartProvider;
+export default CartContextProvider

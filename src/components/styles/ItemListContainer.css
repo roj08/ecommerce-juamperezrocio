@@ -1,6 +1,8 @@
-.title {
-  width: 100%;
-  min-height: 60vh;
-  padding-top: 200px;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Poppins:wght@500&display=swap');
+
+.itemListContainer__title{
+    text-align: center;
+    font-family:  'Manrope', sans-serif;
+    letter-spacing: 0.5em;
+    color: #000000;
 }

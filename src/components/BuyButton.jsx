@@ -1,41 +1,17 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import "./styles/BuyButton.css"
 
-const InputCount = () => {
-
-    return (
-        <>
-        <Link to='/cart'>
-            <button onClick={()=>console.log('cart')} className="button-primary">
-                Terminar Compra
-            </button>
-        </Link>
-        </>
-    )
-}
-
-const ButtonCount= ({handleInter})=>{
-    return <button onClick={handleInter} className="button-primary">Agregar</button>
-}
-
-const BuyButton = () => {
-
-    const [inputType, setInputType] = useState('button')
-
-    const handleInter=()=>{
-        setInputType('input')
-    }
-
-    return(
-        <div>
-            {
-                inputType === 'button' ?
-                    <ButtonCount handleInter={handleInter} />
-                :
-                    <InputCount />
-            }
+export const BuyButton = () => {
+  return (
+    <>
+        <div className='buyButton'>
+            <Link to={"/"}>
+                <button className='button'>Seguir comprando</button>
+            </Link>
+            <Link to={"/cart"}>
+                <button className='button'>Finalizar compra</button>
+            </Link>
         </div>
-    )
+    </>
+  )
 }
-
-export default BuyButton

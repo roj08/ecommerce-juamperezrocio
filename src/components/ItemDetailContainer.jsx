@@ -1,45 +1,31 @@
-import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getFetch } from './helpers/getFetch';
-//import { getProductById } from '../components/helpers/getData';
-import ItemDetail from './ItemDetail';
-import './styles/ItemDetailContainer.css';
+import React, { useEffect, useState } from 'react';
+import {ItemDetail}  from './ItemDetail';
+import {getData} from '../components/data/data';
+import { Loader } from './Loader';
 
-const ItemDetailContainer = () => {
-  const [producto, setProducto] = useState({})
 
-  const { detalleId } = useParams()
+export const ItemDetailContainer = () => {
+  const [loader, setLoader] = useState(true);
+  const [product, setProduct] = useState({});
+  const { id } = useParams()
 
   useEffect(() => {
-    getFetch(detalleId)
-    .then(respuesta => setProducto(respuesta))
-    .catch((err)=> console.log(err))
+      getData(id) 
+      .then(respuesta=> setProduct(respuesta))
+      .catch((err)=> console.log(err))
+      .finally(()=>setLoader(false))     
   }, [])
 
-  console.log(producto)
-  console.log(detalleId)
   return (
-    <div>
-      <ItemDetail />
-    </div>
+      <>
+      <div>
+        {loader ? <Loader greeting={"Cargando el detalle"}/> : <ItemDetail  product={product}/> }
+      
+
+      </div>
+      
+      </>
+    
   )
 }
-
-export default ItemDetailContainer
-/*const ItemDetailContainer = ({ id }) => {
-  const [product, setProduct] = useState(null);
-
-  useEffect((product) => {
-   
-    getProductById(Number(id), setProduct);
-    console.log(product);
-  }, [id]);
-
-  return (
-    <section className="item-detail-container">
-      {product ? <ItemDetail item={product} /> : <p>Obteniendo producto...</p>}
-    </section>
-  );
-};
-
-export default ItemDetailContainer;*/

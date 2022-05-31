@@ -1,27 +1,20 @@
-import React, { useContext } from 'react';
-import { CartContext } from '../context/CartContext';
+import { useCartContext } from '../context/CartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
 
 import './styles/CartWidget.css';
 
+export const CartWidget = () => {
 
-const CartWidget = () => {
+  const {cartList}=useCartContext()
 
-  const cartContext = useContext(CartContext);
-  const { cart } = cartContext;
+  console.log(cartList)
 
+  const totalItems =  cartList.reduce((acc, item)=> acc = acc + item.count, 0)
     return (
-      <div className="cart-widget">
-        
-        <Link to='/cart'>
-        <FontAwesomeIcon icon={faCartShopping} size="2x" color="white" />
-        </Link>
-
-        <div className="qty-display">{cart.length}</div>
-      </div>
-    );
-  };
-  
-  export default CartWidget;
+      <>
+        <FontAwesomeIcon icon={faCartShopping} size="2x" color="white"/>
+        <button className='totalItems'>{totalItems}</button>
+      </>
+    )
+  }

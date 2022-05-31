@@ -1,68 +1,53 @@
-import ItemList from './ItemList';
-import { getFetch } from './helpers/getFetch';
+import React, { useEffect, useState } from 'react';
+import "./styles/ItemListContainer.css"
+import ItemList from "./ItemList"
+//import { products }from "./data/data"
+import { Loader } from './Loader';
 import { useParams } from 'react-router-dom';
+import { getData } from './data/data';
 
-import './styles/ItemListContainer.css';
-import './styles/ItemList.css';
-import { useEffect, useState } from 'react';
 
-const ItemListContainer = () => {
-  const [productos, setProductos] = useState([])
-  const [loading, setLoading] = useState(true)
 
-  const { id } = useParams()
 
-  useEffect(() => {
-    if (id) {
-      getFetch()
-      .then(respuesta => setProductos(respuesta.filter((prods)=> prods.categoria === id )))
-      .catch((err)=> console.log(err))
-      .finally(()=>setLoading(false))
-    } else {
-      getFetch()
-      .then(respuesta=> setProductos(respuesta))
-      .catch((err)=> console.log(err))
-      .finally(()=>setLoading(false))
-    }
-  }, [id])
+export default function ItemListContainer({greeting = "Nuestros productos"}) { 
+    const [productsList, setProducts] = useState([]);
+    const [loader, setLoader] = useState(true);
+    const {category} = useParams()
 
-  console.log(id)
 
-  return (
-    <section className="title">
-      <div className="title-container">
-        <article className="title-container-text">
-          <h1>Cositas Bonitas</h1>
-          <p>
-            ¡Los mejores regalos los podes encontrar acá!
-            También podes contactarnos para pedirnos algo personalizado
-          </p>
-        </article>
-      </div>
-      <ItemList />
-    </section>
-  );
+    // useEffect(()=>{
+    //   getData
+    //   .then(res => setProducts(res))
+    //   .catch((err)=> console.log(err))
+    //   .finally(()=>setLoader(false))
+    // }, [])
 
-}
-
-export default ItemListContainer;
-
-/*const ItemListContainer = () => {
-    
-    return (
-      <section className="title">
-        <div className="title-container">
-          <article className="title-container-text">
-            <h1>Cositas Bonitas</h1>
-            <p>
-              ¡Los mejores regalos los podes encontrar acá!
-              También podes contactarnos para pedirnos algo personalizado
-            </p>
-          </article>
-        </div>
-        <ItemList />
-      </section>
-    );
-  };
+    useEffect(() => {
+      if (category) {
+        getData()
+        .then((res) => 
+          setProducts(res.filter((item) => item.category === category)))
+        .catch((err) => console.log(err))
+        .finally(() => setLoader(false));
+      } else {
+        getData()
+        .then((res) => setProducts(res))
+        .catch((err) => console.log(err))
+        .finally(() => setLoader(false));
+      }
+    }, [category]);
   
-  export default ItemListContainer;*/
+
+    return (
+
+      <>
+        <h1 className="itemListContainer__title">{greeting}</h1>
+        <div className="itemListContainer">
+
+          {loader ? <Loader greeting={"Cargando productos..."}/> : <ItemList products={productsList}/>}         
+
+        </div>
+      </>
+            
+    );
+  }

@@ -1,18 +1,16 @@
-.cart-widget {
-    position: relative;
-    cursor: pointer;
-    text-align: center;
-    grid-column: 3;
-  }
-  
-  .qty-display {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    background-color: white;
-    border-radius: 50%;
-    font-size: 12px;
-    position: absolute;
-    text-align: center;
-    line-height: 17px;
-  }
+.carrito{
+  width: 4em;
+  height: 4em;
+  margin-left: 2em;
+}
+
+.totalItems{
+  border-radius: 100%;
+  padding: 0.5em;
+  width: 2em;
+  height: 2em;
+  border-style: none;
+  background-color: #8C9CA2;
+  color: #fff;
+  cursor: pointer;
+}
