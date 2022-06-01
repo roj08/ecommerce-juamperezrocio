@@ -1,5 +1,4 @@
 import {createContext, useContext, useState} from 'react';
-import swal from 'sweetalert';
 
 const CartContext = createContext([])
 
