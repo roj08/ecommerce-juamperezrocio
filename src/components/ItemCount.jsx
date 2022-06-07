@@ -5,19 +5,11 @@ function ItemCount({stock, initial, onAdd, handleInputType }) {
   const [count, setCount] = useState(initial);
 
   function contadorMas() {
-    if (count < stock) {
-      setCount(count + 1);
-    }else{
-      alert("No hay mas stock")
-    }
+    count < stock ? setCount(count + 1) : alert("No hay mas stock")
   }
 
   function contadorMenos() {
-    if (count > initial) {
-      setCount(count - 1);
-    }else if (count<0){
-      alert("El carrito está vacío")
-    }
+    count > initial ? setCount(count - 1) : alert("El carrito está vacío")
   }
 
   function addToCart() {

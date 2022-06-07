@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import {ItemDetail}  from './ItemDetail';
-//import {getData} from '../components/data/data';
 import { Loader } from './Loader';
 import {getFirestore, doc, getDoc} from "firebase/firestore"
 
@@ -20,12 +19,6 @@ export const ItemDetailContainer = () => {
     .finally(()=>setLoader(false))   
  }, [])
 
-  /*useEffect(() => {
-      getData(id) 
-      .then(respuesta=> setProduct(respuesta))
-      .catch((err)=> console.log(err))
-      .finally(()=>setLoader(false))     
-  }, [])*/
 
   return (
       <>

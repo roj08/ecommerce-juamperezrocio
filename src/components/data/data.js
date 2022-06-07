@@ -31,6 +31,22 @@ export const products = [
       category: "cuadernos",
       id: '4',
     },
+    {
+      name: 'Stitch',
+      price: 2500,
+      img: require ('../styles/img/stitch.png'),
+      description: 'Peluche de Stitch',
+      category: "peluches",
+      id: '5',
+    },
+    {
+      name: 'Cheshire',
+      price: 2500,
+      img: require ('../styles/img/cheshire.png'),
+      description: 'Peluche de Cheshire',
+      category: "peluches",
+      id: '6',
+    },
   ];
 
   export const getData = (id) => {

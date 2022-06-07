@@ -8,13 +8,17 @@ export const CartWidget = () => {
 
   const {cartList}=useCartContext()
 
-  console.log(cartList)
-
   const totalItems =  cartList.reduce((acc, item)=> acc = acc + item.count, 0)
     return (
       <>
-        <FontAwesomeIcon icon={faCartShopping} size="2x" color="white"/>
-        <button className='totalItems'>{totalItems}</button>
+        {cartList.length ?  <div>
+                              <FontAwesomeIcon icon={faCartShopping} size="2x" color="white"/>
+                              <button className='totalItems'>{totalItems}</button>
+                            </div> :  
+                            <div>
+                              <FontAwesomeIcon icon={faCartShopping} size="2x" color="white"/>
+                              <button className='totalItems'>{totalItems}</button>
+                            </div>}
       </>
     )
   }
