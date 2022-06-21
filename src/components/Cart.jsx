@@ -1,14 +1,14 @@
 import { useCartContext } from "../context/CartContext"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useState } from 'react'
 import { collection, getFirestore, addDoc } from "firebase/firestore";
 
 import "./styles/Cart.css"
 
 export const Cart = () => {
-  const [userId, setUserId] = useState('');
+  const [setUserId] = useState('');
   const db = getFirestore()
   const {cartList, deleteCart, deleteItem} = useCartContext()
   const total = cartList.reduce((acc, item)=> acc = acc + (parseFloat(item.price)*item.count),0)
@@ -49,7 +49,6 @@ export const Cart = () => {
           addDoc(queryCollectionOrders, order)
             .then(resp => setUserId(resp.id))
             .catch(err => console.log(err))
-          // .finally(deleteCart())
           
         },2000)
        
@@ -69,7 +68,7 @@ export const Cart = () => {
             </Link>
             <p>{product.name}</p>
             <p>Precio: ${product.price}</p>
-            <p>Cantidad: {product.count}unidades</p>
+            <p>Cantidad: {product.count} unidades</p>
             <button onClick={()=>deleteItem(product.id)} className="delete-item">X</button>
           </li>)}
 
