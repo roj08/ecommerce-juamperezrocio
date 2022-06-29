@@ -6,7 +6,4 @@ La tienda contiene todos los productos con fotos, nombres, precios y la posibili
 Dentro del ItemDetail se pueden agregar los productos al carrito luego de seleccionar la cantidad deseada. Una vez elegidos los productos tenemos la opción de seguir comprando o ir al carrito para terminar la compra. 
 Al acceder al carrito podemos ver un detalle de los productos seleccionados y un formulario de compra donde se toman los datos del usuario y se genera un id de compra.
 
-Las librerías utilizadas fueron:
-Sweet Alert para crear una alerta que confirme la compra.
-Toastify para que el usuario reciba una alerta con cada producto que se agrega al carrito.
-FireBase donde están almacenados los productos.
+Las librerías utilizadas fueron: Sweet Alert para crear una alerta que confirme la compra; Toastify para que el usuario reciba una alerta con cada producto que se agrega al carrito; FireBase donde están almacenados los productos.
