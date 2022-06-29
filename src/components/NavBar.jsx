@@ -1,12 +1,10 @@
 import logo from "./styles/img/CositasBonitasLogo.png"
 import { CartWidget } from './CartWidget'
 import {Link} from 'react-router-dom'
-import { useCartContext } from "../context/CartContext"
 
 import "./styles/NavBar.css"
 
 export const NavBAr = () => {
-  const {cartList}=useCartContext()
   
   return (
     <header>
@@ -28,10 +26,10 @@ export const NavBAr = () => {
               <li>Peluches</li>              
             </Link> 
           </ul>
-            {cartList.length ? <Link to={"/cart"}>
+            <Link to={"/cart"}>
               <CartWidget/>
-            </Link> : <CartWidget/>}
+            </Link>
         </nav>
     </header>
-  )
-}
+  );
+};

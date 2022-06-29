@@ -1,22 +1,16 @@
 import React, { useState } from "react";
 import "./styles/ItemCount.css";
 
-function ItemCount({stock, initial, onAdd, handleInputType }) {
+function ItemCount({stock, initial, onAdd }) {
   const [count, setCount] = useState(initial);
 
   function contadorMas() {
-    count < stock ? setCount(count + 1) : alert("No hay mas stock")
+    count < stock ? setCount(count + 1) : alert("No hay mas stock");
   }
 
   function contadorMenos() {
-    count > initial ? setCount(count - 1) : alert("El carrito está vacío")
+    count > initial ? setCount(count - 1) : alert("El carrito está vacío");
   }
-
-  function addToCart() {
-    onAdd(count);
-    handleInputType();
-}
-
 
   return (
 
@@ -28,7 +22,7 @@ function ItemCount({stock, initial, onAdd, handleInputType }) {
               <button onClick={contadorMas}>+</button>
           </div>
           <div className="containerBotonCarrito">
-            <button className="botonCarrito" onClick={addToCart}>AGREGAR AL CARRITO</button>       
+            <button className="botonCarrito" onClick={() => onAdd(count)}>AGREGAR AL CARRITO</button>       
           </div>
 
         </div>

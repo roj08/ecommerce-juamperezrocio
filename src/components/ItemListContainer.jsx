@@ -2,16 +2,14 @@ import React, { useEffect, useState } from 'react';
 import "./styles/ItemListContainer.css"
 import ItemList from "./ItemList"
 import { Loader } from './Loader';
-import { useParams } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import {getFirestore, collection, getDocs, where, query } from "firebase/firestore"
-
-
 
 
 export default function ItemListContainer({greeting = "Nuestros productos"}) { 
     const [productsList, setProducts] = useState([]);
     const [loader, setLoader] = useState(true);
-    const {category} = useParams()
+    const {category} = useParams();
 
     useEffect(() => {
       const db = getFirestore();
@@ -42,6 +40,7 @@ export default function ItemListContainer({greeting = "Nuestros productos"}) {
     return (
 
       <>
+        
         <h1 className="itemListContainer__title">{greeting}</h1>
         <div className="itemListContainer">
 

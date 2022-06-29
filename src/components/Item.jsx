@@ -6,7 +6,7 @@ export default function Item({name, price, img, id}) {
   return (
       <>
       <Link to={`/detail/${id}`} className="item">
-        <div>
+        <div key={id}>
           <img className="item_img" src={img} alt="" />
           <div className='item_info'>
             <h3 className="item_title">{name}</h3>
@@ -16,5 +16,5 @@ export default function Item({name, price, img, id}) {
         <button className='masInfo' >Más información</button>
     </Link>
         </>
-  )
-}
+  );
+};

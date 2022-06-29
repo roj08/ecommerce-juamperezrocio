@@ -6,19 +6,19 @@ import './styles/CartWidget.css';
 
 export const CartWidget = () => {
 
-  const {cartList}=useCartContext()
+  const {cartList}=useCartContext();
 
-  const totalItems =  cartList.reduce((acc, item)=> acc = acc + item.count, 0)
-    return (
-      <>
-        {cartList.length ?  <div>
-                              <FontAwesomeIcon icon={faCartShopping} size="2x" color="white"/>
-                              <button className='totalItems'>{totalItems}</button>
-                            </div> :  
-                            <div>
-                              <FontAwesomeIcon icon={faCartShopping} size="2x" color="white"/>
-                              <button className='totalItems'>{totalItems}</button>
-                            </div>}
-      </>
-    )
-  }
+  const totalItems =  cartList.reduce(
+    (acc, item) => (acc = acc + item.count),
+    0
+  );
+
+  return (
+    <>
+     <div>
+        <FontAwesomeIcon icon={faCartShopping} size="2x" color="white" />
+        <button className="totalItems">{totalItems}</button>
+      </div>
+    </>  
+    );
+  };
